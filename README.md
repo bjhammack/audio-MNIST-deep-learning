@@ -41,7 +41,18 @@ There are many libraries, including some built into PyTorch, Librosa, or scikit-
 
 
 ## Data Prep
+To prepare the data, the audio samples are stored in a custom `AudioData` class, which is built on PyTorch's `Dataset` class. Once in `AudioData`, cleaning/processing functions are called from the custom class `AudioUtil` (both AudioData and AudioUtil can be found in [utils.py](https://github.com/bjhammack/audio-MNIST-deep-learning/blob/main/utils.py)).
 
+Once the file is read in, five cleaning steps occur, based on the results of analysis, in addition to best practices for audio data preparation.
+	1. The sample is passed through `AudioUtil.resample()`.
+		* This uses torchaudio's `Resample` function to adjust the sample's sample rate to the default sample rate I identified in analysis (48,000).
+	2. The sample is passed through `AudioUtil.rechannel()`.
+		* Much like the variance of images and their different color schemes (RGB, GRB, etc.), audio can be created on one or two channels. The model will expect two channels, so all one channel samples are converted to two channel.
+	3. The sample is passed through `AudioUtil.pad_trunc()`.
+		* This sets all samples to a default length (in this case 1000ms or one second), using white noise to pad.
+	4. The sample is then converted to a Mel Spectrogram using PyTorch's `Mel_Spectrogram()` function.
+	5. Finally, the spectrogram is randomly masked.
+		* Random frequencies and periods of time are blocked out in each spectrogram, creating additional noise to prevent overfitting and improve generality.
 
 ## Modeling
 
