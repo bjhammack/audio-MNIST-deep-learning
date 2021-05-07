@@ -83,6 +83,10 @@ When training complete, the model had a final Loss of 0.06 and a testing accurac
 
 ![v1 loss](https://github.com/bjhammack/audio-MNIST-deep-learning/blob/main/images/v1_training_loss.png?raw=true "v1 loss")
 
+Examining the confusion matrix of the test dataset, it is also clear that no single label is more or less accurate than the others, adding credence to the hope that the errors are random and not caused by a specific set of labels.
+
+![v1 conf](https://github.com/bjhammack/audio-MNIST-deep-learning/blob/main/figures/confusion_05-06-21.png?raw=true "v1 conf")
+
 ### v2
 One concern coming out of iteration 1 was that the padding is too large, somehow causing the model to overfit and inflate the accuracy. To ensure this wouldn't happen, iteration 2 was identical in all aspects to 1, but the default clip length was reduced to 1000ms.
 
@@ -104,6 +108,10 @@ With the white noise implemented (see below), the model had a much tougher time 
 After being trained and tested, the model had a final Loss of 0.05 and a testing accuracy of 0.98.
 
 ![v3 loss](https://github.com/bjhammack/audio-MNIST-deep-learning/blob/main/images/v3_training_loss.png?raw=true "v3 loss")
+
+To confirm consistency from iteration 1, the confusion matrix is examined again with similar results. (the confusion matrices of all other iterations and k-folds can be found in [figures](https://github.com/bjhammack/audio-MNIST-deep-learning/tree/main/figures))
+
+![v3 conf](https://github.com/bjhammack/audio-MNIST-deep-learning/blob/main/figures/v3_confusion_05-06-21.png?raw=true "v3 conf")
 
 #### K-fold Cross Validation
 Feeling very confident in this third iteration, one more best practice I wanted to implement was K-fold cross validation.
