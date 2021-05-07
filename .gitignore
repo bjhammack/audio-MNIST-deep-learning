@@ -1,3 +1,9 @@
+audio_processing_test.py
+data/
+models/
+runs/
+notes/
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
