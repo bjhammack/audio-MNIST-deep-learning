@@ -9,6 +9,7 @@ The process for the analysis itself can be found in the Jupyter notebook [data_a
 
 ### The Labels
 The labels were examined to confirm their distribution and, as seen in the graph below, all labels had the exact same number of samples (3,000).
+
 ![Label Distribution](https://github.com/bjhammack/audio-MNIST-deep-learning/blob/main/images/label_distribution.png?raw=true "Label Hist")
 
 ### Sample Rates
@@ -20,11 +21,13 @@ Examing the sample rates of each sample within this dataset reveals that they al
 Much like image modeling, all audio samples will need to be the same length to get passed into the model.
 
 Looking at the histogram below, no the lengths are normally distributed, no less than 0.3 seconds, and no greater than 1 second. The shorter lengths will need to be padded by some method to allow modeling.
+
 ![Length Histogram](https://github.com/bjhammack/audio-MNIST-deep-learning/blob/main/images/length_distribution.png?raw=true "Length Hist")
 
 In additional to examining the distribution, it is important to also understand how each individual label's sample lengths are distributed, to ensure the model does not overfit based on clip length.
 
 The scatter plot below shows that, while some numbers have higher floors and others lower ceilings, the majority of clip lengths are gathered around the mean of clip lengths, which is good for modeling. To be more specific, no label has a mean clip length less than 0.55 seconds or greater than 0.73 seconds.
+
 ![Length Scatter](https://github.com/bjhammack/audio-MNIST-deep-learning/blob/main/images/length_by_label.png?raw=true "Length Scatter")
 
 ### Mel Spectrogram
