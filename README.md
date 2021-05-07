@@ -52,7 +52,9 @@ Once the file is read in, five cleaning steps occur, based on the results of ana
 	* This sets all samples to a default length (in this case 1000ms or one second), using white noise to pad.
 4. The sample is then converted to a Mel Spectrogram using PyTorch's `Mel_Spectrogram()` function.
 5. Finally, the spectrogram is randomly masked.
-	* Random frequencies and periods of time are blocked out in each spectrogram, creating additional noise to prevent overfitting and improve generality.
+	* Random frequencies and periods of time are blocked out in each spectrogram, creating additional noise to prevent overfitting and improve generality. Note in the picture below how randomly placed grey lines block out periods of time (vertical lines) and ranges of frequencies (horizontal lines).
+
+	![Masked Spectrogram](https://github.com/bjhammack/audio-MNIST-deep-learning/blob/main/images/masked_spectrogram.png?raw=true "Mask Spec")
 
 ## Modeling
 
