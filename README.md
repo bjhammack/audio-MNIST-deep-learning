@@ -127,6 +127,13 @@ Results:
 
 With cross validation producing very similar results to the rest of my training iterations, I feel comfortable saying that this is a strong model for classifying spoken numbers.
 
+## Live Classification
+To show the model in action, I have included `live_classify.py`, a script that allows you to live record your own voice and classify the numbers you say. To use this script, simply run it in terminal with `python live_classify.py`, wait for "Ready to record..." to appear, then press R to record for 1.5 seconds, after-which the model will classify what you said. Press Q to quit.
+
+Note: The Python library `sounddevice` may not work on some OS's or with certain microphones, so some tweaking may be required before you can run the script in its entirety.
+
+Note x2: Since the saved models and data are not in this repo, wrangling and training will need to be done first prior to using this script.
+
 ## Next Steps
 Just because I am comfortable with iteration 3, does not mean there is no work left to be done.
 

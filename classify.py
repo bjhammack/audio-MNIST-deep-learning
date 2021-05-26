@@ -168,12 +168,7 @@ def clear_checkpoints(path):
 			os.remove(path+file)
 
 def save_model(model, optimizer, epochs, loss, file):
-	torch.save({
-		'epoch':epochs,
-		'model_state_dict':model.state_dict(),
-		'optimizer_state_dict':optimizer.state_dict(),
-		'loss':loss,
-		}, f'models/{file}')
+	torch.save(model.state_dict(), f'models/{file}')
 
 def load_model(file, train=False):
 	model = AudioClassifier()

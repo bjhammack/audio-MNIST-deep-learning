@@ -11,10 +11,11 @@ import torchaudio
 from torchaudio import transforms
 
 class AudioData(Dataset):
-	def __init__(self, df, data_path):
+	def __init__(self, df, data_path, train=True):
+		self.train = train
 		self.df = df
 		self.data_path = str(data_path)
-		self.duration = 1000
+		self.duration = 1500
 		self.sr = 48000
 		self.channel = 2
 		self.shift_pct = 0.4
@@ -33,9 +34,11 @@ class AudioData(Dataset):
 		dur_aud = AudioUtil.pad_trunc(rechan, self.duration)
 		#shift_aud = AudioUtil.time_shift(dur_aud, self.shift_pct)
 		sgram = AudioUtil.spectrogram(dur_aud)
-		aug_sgram = AudioUtil.spec_augment(sgram, max_mask_pct=0.1, n_freq_masks=2, n_time_masks=2)
 
-		return aug_sgram, class_id
+		if self.train:
+			sgram = AudioUtil.spec_augment(sgram, max_mask_pct=0.1, n_freq_masks=2, n_time_masks=2)
+
+		return sgram, class_id
 
 class AudioUtil():
 	'''
